@@ -60,7 +60,6 @@ const bets = ref(JSON.parse(localStorage.getItem('bets') || '[]'))
 
 const receiptVisible = ref(false)
 const receiptTime = ref('')
-const router = useRouter()
 
 function removeBet(index) {
   bets.value.splice(index, 1)
