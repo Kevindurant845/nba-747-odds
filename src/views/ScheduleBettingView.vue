@@ -40,18 +40,19 @@
               </ul>
             </div>
             <!-- Bet Controls -->
-            <div class="mt-3 d-flex flex-column align-items-end">
-              <select v-model="selectedTeam[index]" class="form-select form-select-sm me-2 mb-2">
-                <option value="">Select Team</option>
+            <!-- Inside each game card -->
+            <div class="mt-3 d-flex">
+              <select v-model="selectedTeam[index]" class="form-select form-select-sm me-2">
+                <option value="" disabled selected>Select Team</option>
                 <option :value="game.teamA">{{ game.teamA }}</option>
                 <option :value="game.teamB">{{ game.teamB }}</option>
               </select>
               <button 
-                @click="addToBetSlip(game, selectedTeam[index])" 
-                class="btn btn-outline-warning btn-sm" 
-                :disabled="!selectedTeam[index]"
+              @click="addToBetSlip(game, selectedTeam[index])" 
+              class="btn btn-outline-warning btn-sm" 
+              :disabled="!selectedTeam[index]"
               >
-                Add to Bet Slip
+              Add to Bet Slip
               </button>
             </div>
           </div>
@@ -98,19 +99,20 @@
                 </ul>
               </div>
               <!-- Bet Controls -->
-              <div class="mt-3 d-flex flex-column align-items-end">
-                <select v-model="selectedTeamPBA[index]" class="form-select form-select-sm me-2 mb-2">
-                  <option value="">Select Team</option>
-                  <option :value="game.teamA">{{ game.teamA }}</option>
-                  <option :value="game.teamB">{{ game.teamB }}</option>
-                </select>
-                <button 
-                  @click="addToBetSlip(game, selectedTeamPBA[index])" 
-                  class="btn btn-outline-light btn-sm" 
-                  :disabled="!selectedTeamPBA[index]"
-                >
-                  Add to Bet Slip
-                </button>
+              <!-- Inside each game card -->
+              <div class="mt-3 d-flex">
+                  <select v-model="selectedTeam[index]" class="form-select form-select-sm me-2">
+                    <option value="" disabled selected>Select Team</option>
+                    <option :value="game.teamA">{{ game.teamA }}</option>
+                    <option :value="game.teamB">{{ game.teamB }}</option>
+                  </select>
+                  <button 
+                  @click="addToBetSlip(game, selectedTeam[index])" 
+                  class="btn btn-outline-warning btn-sm" 
+                  :disabled="!selectedTeam[index]"
+                 >
+                   Add to Bet Slip
+                 </button>
               </div>
             </div>
           </div>

@@ -1,5 +1,10 @@
 <template>
   <div class="bet-slip-view">
+    <!-- Back Arrow -->
+    <router-link to="/schedule-betting" class="back-arrow text-warning mb-3 d-block">
+      &larr; Back to Schedule
+    </router-link>
+
     <h2 class="mb-4 text-warning">Your Bet Slips</h2>
 
     <!-- Empty State -->
@@ -23,6 +28,7 @@
 
       <div class="d-grid gap-2 mt-4">
         <button @click="generateReceipt" class="btn btn-success">Proceed & Generate Receipt</button>
+        <button @click="clearBets" v-if="bets.length > 0" class="btn btn-danger">Clear All Bets</button>
       </div>
     </div>
 
@@ -42,11 +48,14 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-// Simulate bet data stored in localStorage or reactive state
+const router = useRouter()
+
+// Simulate bet data stored in localStorage
 const bets = ref(JSON.parse(localStorage.getItem('bets') || '[]'))
 
 const receiptVisible = ref(false)
@@ -70,7 +79,12 @@ function generateReceipt() {
 
 function closeReceipt() {
   receiptVisible.value = false
-  bets.value = [] // Clear bets after generating receipt
+  bets.value = [] // Clear bets after receipt
+  saveBets()
+}
+
+function clearBets() {
+  bets.value = []
   saveBets()
 }
 
@@ -99,5 +113,9 @@ function formatDate(dateString) {
   width: 100%;
   max-width: 500px;
   padding: 20px;
+}
+.back-arrow {
+  font-size: 1.2rem;
+  text-decoration: none;
 }
 </style>
