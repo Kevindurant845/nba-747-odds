@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ScheduleBettingView from '../views/ScheduleBettingView.vue'
 import Trivia from '../views/Trivia.vue'
 import QuizView from '../views/QuizView.vue'
-import AboutViewVue from '../views/AboutView.Vue'
+import AboutViewVue from '../views/AboutView.vue'
 
 const routes = [
   { path: '/', component: HomeView },
