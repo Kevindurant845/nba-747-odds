@@ -84,10 +84,12 @@ import { ref } from 'vue'
 
 const searchQuery = ref('')
 
-function filteredGames(){
-  return games.value.filter(game =>
-    game.teamA.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    game.teamB.toLowerCase().includes(searchQuery.value.toLowerCase())
+function filteredGames(gameList){
+  if (!searchQuery.value) return gameList
+  const query = searchQuery.value.toLowerCase()
+  return gameList.filter(game =>
+    game.teamA.toLowerCase().includes(query) ||
+    game.teamB.toLowerCase().includes(query)
   )
 }
 
@@ -116,7 +118,7 @@ const games = ref([
     }
   },
   {
-    teamA: "Oklahome City Thunder",
+    teamA: "Oklahoma City Thunder",
     teamB: "Brooklyn Nets",
     date: "2025-07-17",
     time: "5:30 AM",
