@@ -7,6 +7,16 @@
       <p class="lead text-white-50">Explore amazing trivia about the 2025 NBA Playoffs!</p>
     </div>
 
+    <!-- Take Quiz Button -->
+    <div class="text-center mt-5 mb-5">
+      <router-link 
+        to="/quiz" 
+        class="btn btn-warning btn-lg px-5 py-3 fs-5 rounded-pill shadow-sm quiz-button"
+      >
+        🏀 Take a Quiz!
+      </router-link>
+    </div>
+
     <!-- Trivia Cards Grid -->
     <div class="container">
       <div class="row g-4 justify-content-center">

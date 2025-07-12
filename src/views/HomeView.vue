@@ -27,7 +27,7 @@
               <i class="bi bi-calendar-event display-4 mb-3"></i>
               <h5>Game Schedule</h5>
               <p>See upcoming NBA games and summer league matchups.</p>
-              <router-link to="/schedule" class="btn btn-outline-light mt-auto">View Schedule</router-link>
+              <router-link to="/schedule-betting" class="btn btn-outline-light mt-auto">View Schedule</router-link>
             </div>
           </div>
           <div class="col-md-3">
@@ -61,7 +61,7 @@
               <div class="card-body">
                 <h5 class="card-title">Game Recap: Thunder vs Pacers</h5>
                 <p class="card-text">Indiana got whatever it wanted against the Thunder in Game 6 of the 2025 NBA Finals, dominating both ends of the floor in a 108-91 win that was virtually sealed by the time the fourth quarter began.</p>
-                <a href="#" class="btn btn-primary">Watch Now</a>
+                <a href="https://youtu.be/tHwh0qV2Rxw?si=SopOYpC3j7WtU2Hk" class="btn btn-primary">Watch Now</a>
               </div>
             </div>
           </div>
@@ -71,7 +71,7 @@
               <div class="card-body">
                 <h5 class="card-title">Rockets confirm arrival of Durant</h5>
                 <p class="card-text">Superstar Kevin Durant is headed from the Phoenix Suns to Houston as part of an NBA-record seven-team deal, the Rockets confirmed on Sunday (Monday in Manila).</p>
-                <a href="#" class="btn btn-primary">Read now</a>
+                <a href="https://www.nba.com/news/kevin-durant-joins-rockets-7-team-trade" class="btn btn-primary">Read now</a>
               </div>
             </div>
           </div>
