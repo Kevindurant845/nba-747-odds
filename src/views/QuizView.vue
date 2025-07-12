@@ -94,7 +94,7 @@ const questions = [
   },
   {
     text: "Who Did a Game Winner on Game 1 of the NBA Finals 2025?",
-    options: ["Shai Gilgeous-Alexander", "Saturnino Perlas", "Andrew Nembhard", "Tyrese Haliburton"],
+    options: ["Shai Gilgeous-Alexander", "Kevin Durant", "Andrew Nembhard", "Tyrese Haliburton"],
     answer: "Saturnino Perlas"
   },
 

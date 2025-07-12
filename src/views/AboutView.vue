@@ -29,6 +29,12 @@
       </div>
     </div>
   </div>
+
+  <footer class="bg-dark text-white text-center py-4">
+      <p class="mb-0">&copy; {{ new Date().getFullYear() }} NBA747 | Group Dictech</p>
+      <p>This website has been developed for educational and academic purposes only. All content belongs to their rightful owners. We do not claim or intend to provide commercial services, or real-world betting systems. Information provided are purely hypothetical and for demonstration only. Gusto lang namin madevelop skills namin through this simple website.</p>
+    </footer>
+
 </template>
 
 <script setup></script>
