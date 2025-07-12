@@ -1,18 +1,23 @@
 <template>
   <div class="schedule-betting-view">
-    <input v-model="searchQuery" placeholder="Search team..." class="form-control mb-3" />
+    <!-- Search Bar -->
+    <input 
+      v-model="searchQuery" 
+      placeholder="Search team..." 
+      class="form-control mb-3" 
+    />
+
+    <!-- NBA Games Section -->
     <h2 class="mb-4 text-warning">NBA Summer League Schedule & Betting Odds</h2>
 
-    <!-- Game List -->
-    
-    <div v-if="games.length > 0" class="d-grid gap-4">
+    <div v-if="filteredGames(games).length > 0" class="d-grid gap-4">
       <div 
         v-for="(game, index) in filteredGames(games)" 
         :key="index" 
         class="card bg-dark text-white shadow-sm"
       >
         <div class="card-body">
-          <!-- Summer League Badge -->
+          <!-- Badge -->
           <span v-if="game.isSummerLeague" class="badge bg-info mb-2">🏀 NBA Summer League</span>
 
           <!-- Game Info -->
@@ -26,74 +31,107 @@
             <div>
               <strong>Betting Odds:</strong>
               <ul class="list-unstyled mb-0">
-                <li :class="getOddsClass(game.odds.teamA)">{{ game.teamA }}: {{ game.odds.teamA }}</li>
-                <li :class="getOddsClass(game.odds.teamB)">{{ game.teamB }}: {{ game.odds.teamB }}</li>
+                <li :class="getOddsClass(game.odds.teamA)">
+                  {{ game.teamA }}: {{ game.odds.teamA }}
+                </li>
+                <li :class="getOddsClass(game.odds.teamB)">
+                  {{ game.teamB }}: {{ game.odds.teamB }}
+                </li>
               </ul>
             </div>
-            <button class="btn btn-outline-warning btn-sm">Place Bet</button>
+            <!-- Bet Controls -->
+            <div class="mt-3 d-flex flex-column align-items-end">
+              <select v-model="selectedTeam[index]" class="form-select form-select-sm me-2 mb-2">
+                <option value="">Select Team</option>
+                <option :value="game.teamA">{{ game.teamA }}</option>
+                <option :value="game.teamB">{{ game.teamB }}</option>
+              </select>
+              <button 
+                @click="addToBetSlip(game, selectedTeam[index])" 
+                class="btn btn-outline-warning btn-sm" 
+                :disabled="!selectedTeam[index]"
+              >
+                Add to Bet Slip
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- PBA Game List -->
-<div v-if="pbaGames.length > 0" class="mt-5">
-  <h2 class="mb-4 text-danger">PBA Schedule & Betting Odds</h2>
+    <!-- No NBA Games Found -->
+    <div v-if="filteredGames(games).length === 0" class="text-center my-5">
+      <p class="text-white-50">No matching NBA games found.</p>
+    </div>
 
-  <div class="d-grid gap-4">
-    <div 
-      v-for="(game, index) in filteredGames(pbaGames)" 
-      :key="index" 
-      class="card bg-secondary text-white shadow-sm border border-danger"
-    >
-      <div class="card-body">
-        <!-- PBA Badge -->
-        <span v-if="game.isPBA" class="badge bg-danger mb-2">🔴 PBA League</span>
+    <!-- PBA Games Section -->
+    <div v-if="pbaGames.length > 0" class="mt-5">
+      <h2 class="mb-4 text-danger">PBA Schedule & Betting Odds</h2>
 
-        <!-- Game Info -->
-        <h5 class="card-title">{{ game.teamA }} vs {{ game.teamB }}</h5>
-        <p class="card-text text-white-50">
-          {{ formatDate(game.date) }} | {{ game.time }} ({{ timeUntilGame(game.date, game.time) }})
-        </p>
+      <div class="d-grid gap-4">
+        <div 
+          v-for="(game, index) in filteredGames(pbaGames)" 
+          :key="index" 
+          class="card bg-secondary text-white shadow-sm border border-danger"
+        >
+          <div class="card-body">
+            <!-- Badge -->
+            <span v-if="game.isPBA" class="badge bg-danger mb-2">🔴 PBA League</span>
 
-        <!-- Betting Odds -->
-        <div class="d-flex justify-content-between align-items-center mt-3">
-          <div>
-            <strong>Betting Odds:</strong>
-            <ul class="list-unstyled mb-0">
-              <li :class="getOddsClass1(game.odds.teamA)">{{ game.teamA }}: {{ game.odds.teamA }}</li>
-              <li :class="getOddsClass1(game.odds.teamB)">{{ game.teamB }}: {{ game.odds.teamB }}</li>
-            </ul>
+            <!-- Game Info -->
+            <h5 class="card-title">{{ game.teamA }} vs {{ game.teamB }}</h5>
+            <p class="card-text text-white-50">
+              {{ formatDate(game.date) }} | {{ game.time }} ({{ timeUntilGame(game.date, game.time) }})
+            </p>
+
+            <!-- Betting Odds -->
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <div>
+                <strong>Betting Odds:</strong>
+                <ul class="list-unstyled mb-0">
+                  <li :class="getOddsClass1(game.odds.teamA)">
+                    {{ game.teamA }}: {{ game.odds.teamA }}
+                  </li>
+                  <li :class="getOddsClass1(game.odds.teamB)">
+                    {{ game.teamB }}: {{ game.odds.teamB }}
+                  </li>
+                </ul>
+              </div>
+              <!-- Bet Controls -->
+              <div class="mt-3 d-flex flex-column align-items-end">
+                <select v-model="selectedTeamPBA[index]" class="form-select form-select-sm me-2 mb-2">
+                  <option value="">Select Team</option>
+                  <option :value="game.teamA">{{ game.teamA }}</option>
+                  <option :value="game.teamB">{{ game.teamB }}</option>
+                </select>
+                <button 
+                  @click="addToBetSlip(game, selectedTeamPBA[index])" 
+                  class="btn btn-outline-light btn-sm" 
+                  :disabled="!selectedTeamPBA[index]"
+                >
+                  Add to Bet Slip
+                </button>
+              </div>
+            </div>
           </div>
-          <button class="btn btn-outline-light btn-sm">Place Bet</button>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-    <!-- No Games Message -->
-    <div v-if="games.length === 0" class="text-center my-5">
-      <p class="text-white-50">No upcoming games found.</p>
+    <!-- No PBA Games Found -->
+    <div v-if="filteredGames(pbaGames).length === 0 && pbaGames.length > 0" class="text-center my-5">
+      <p class="text-white-50">No matching PBA games found.</p>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-const searchQuery = ref('')
+const router = useRouter()
 
-function filteredGames(gameList){
-  if (!searchQuery.value) return gameList
-  const query = searchQuery.value.toLowerCase()
-  return gameList.filter(game =>
-    game.teamA.toLowerCase().includes(query) ||
-    game.teamB.toLowerCase().includes(query)
-  )
-}
-
-// Manually defined NBA schedule
+// --- DATA ---
 const games = ref([
   {
     teamA: "New Orleans Pelicans",
@@ -129,6 +167,7 @@ const games = ref([
     }
   }
 ])
+
 const pbaGames = ref([
   {
     teamA: "San Miguel Beermen",
@@ -143,7 +182,39 @@ const pbaGames = ref([
   } 
 ])
 
-// Helper function to format date
+// --- SEARCH FILTER ---
+const searchQuery = ref('')
+
+function filteredGames(gameList){
+  if (!searchQuery.value) return gameList
+  const query = searchQuery.value.toLowerCase()
+  return gameList.filter(game =>
+    game.teamA.toLowerCase().includes(query) ||
+    game.teamB.toLowerCase().includes(query)
+  )
+}
+
+// --- BET SLIP LOGIC ---
+const selectedTeam = ref({})
+const selectedTeamPBA = ref({})
+
+function addToBetSlip(game, team) {
+  if (!team) return
+
+  let bets = JSON.parse(localStorage.getItem('bets') || '[]')
+  bets.push({
+    teamA: game.teamA,
+    teamB: game.teamB,
+    date: game.date,
+    time: game.time,
+    selectedTeam: team,
+    odds: game.odds[team === game.teamA ? 'teamA' : 'teamB']
+  })
+  localStorage.setItem('bets', JSON.stringify(bets))
+  router.push('/betslip')
+}
+
+// --- UTILITIES ---
 function formatDate(dateString) {
   const options = { year: 'numeric', month: 'short', day: 'numeric' }
   return new Date(dateString).toLocaleDateString('en-US', options)
@@ -153,10 +224,10 @@ function timeUntilGame(dateString, gameTime){
   const gameDateTime = new Date(`${dateString} ${gameTime}`)
   const now = new Date()
   const diffMs = gameDateTime - now
-  const diffHours = Math.floor(diffMs /(1000 * 60 * 60))
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
 
   if (diffHours < 0) return 'Live Now!'
-  return `${diffHours} hours(s) remaining`
+  return `${diffHours} hour(s) remaining`
 }
 
 function getOddsClass(odds){
@@ -166,7 +237,6 @@ function getOddsClass(odds){
 function getOddsClass1(odds){
   return parseFloat(odds) > 0 ? 'text-info' : 'text-warning'
 }
-
 </script>
 
 <style scoped>

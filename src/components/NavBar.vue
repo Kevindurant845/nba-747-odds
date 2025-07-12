@@ -10,9 +10,17 @@
           <li class="nav-item"><router-link class="nav-link" to="/">Home</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/schedule-betting">Schedule/Betting</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/trivia">Trivia</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/quiz">Quiz</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/about">About</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/betslip">Bet Slip</router-link></li> <!-- NEW -->
         </ul>
       </div>
     </div>
   </nav>
 </template>
+
+<script setup></script>
+
+<style scoped>
+/* Optional custom styles */
+</style>
