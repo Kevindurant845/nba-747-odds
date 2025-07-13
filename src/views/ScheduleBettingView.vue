@@ -1,5 +1,6 @@
 <template>
   <div class="schedule-betting-view">
+    <!-- Search Bar -->
     <input 
       v-model="searchQuery" 
       placeholder="Search team..." 
@@ -8,6 +9,7 @@
 
     <!-- NBA Section -->
     <h2 class="mb-4 text-warning">🏀 NBA Summer League</h2>
+
     <div v-if="filteredGames(games).length > 0" class="d-grid gap-4">
       <div 
         v-for="game in filteredGames(games)" 
@@ -23,10 +25,11 @@
           <div>
             <strong>Betting Odds:</strong>
             <ul class="list-unstyled">
-              <li :class="getOddsClass(game.odds.teamA)">{{ game.teamA }}: {{ game.odds.teamA }}</li>
-              <li :class="getOddsClass(game.odds.teamB)">{{ game.teamB }}: {{ game.odds.teamB }}</li>
+              <li class="odds-item">{{ game.teamA }}: {{ game.odds.teamA }}</li>
+              <li class="odds-item">{{ game.teamB }}: {{ game.odds.teamB }}</li>
             </ul>
           </div>
+
           <div>
             <strong>Select Team:</strong>
             <div class="form-check text-warning">
@@ -65,6 +68,7 @@
 
     <!-- PBA Section -->
     <h2 class="mt-5 mb-4 text-danger">🔴 PBA League</h2>
+
     <div v-if="filteredGames(pbaGames).length > 0" class="d-grid gap-4">
       <div 
         v-for="game in filteredGames(pbaGames)" 
@@ -80,10 +84,11 @@
           <div>
             <strong>Betting Odds:</strong>
             <ul class="list-unstyled">
-              <li :class="getOddsClass1(game.odds.teamA)">{{ game.teamA }}: {{ game.odds.teamA }}</li>
-              <li :class="getOddsClass1(game.odds.teamB)">{{ game.teamB }}: {{ game.odds.teamB }}</li>
+              <li class="odds-item">{{ game.teamA }}: {{ game.odds.teamA }}</li>
+              <li class="odds-item">{{ game.teamB }}: {{ game.odds.teamB }}</li>
             </ul>
           </div>
+
           <div>
             <strong>Select Team:</strong>
             <div class="form-check text-warning">
@@ -132,6 +137,7 @@ const searchQuery = ref('')
 const selectedTeams = reactive({})
 const totalBets = ref(0)
 
+// --- NBA Games ---
 const games = ref([
   {
     id: 'nba1',
@@ -141,7 +147,7 @@ const games = ref([
     time: "8:00 AM",
     odds: { teamA: "3.08", teamB: "1.39" }
   },
-    {
+  {
     id: 'nba2',
     teamA: "Utah Jazz",
     teamB: "San Antonio Spurs",
@@ -167,6 +173,7 @@ const games = ref([
   }
 ])
 
+// --- PBA Games ---
 const pbaGames = ref([
   {
     id: 'pba1',
@@ -239,13 +246,6 @@ function timeUntilGame(date, time) {
   const hours = Math.floor((target - now) / (1000 * 60 * 60))
   return hours < 0 ? 'Live Now!' : `${hours} hour(s) remaining`
 }
-
-function getOddsClass(odds) {
-  return parseFloat(odds) > 0 ? 'text-success' : 'text-danger'
-}
-function getOddsClass1(odds) {
-  return parseFloat(odds) > 0 ? 'text-info' : 'text-warning'
-}
 </script>
 
 <style scoped>
@@ -253,5 +253,25 @@ function getOddsClass1(odds) {
   max-width: 900px;
   margin: auto;
   padding-top: 2rem;
+}
+
+/* Custom Odds Style */
+.odds-item {
+  font-weight: bold;
+  color: #f0ad4e; /* Bootstrap warning color */
+}
+
+/* Optional: Customize more */
+.form-check-input:checked + .form-check-label {
+  font-weight: bold;
+  color: #ffc107; /* Bootstrap warning yellow */
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+.btn-success:hover {
+  background-color: #218838;
 }
 </style>
