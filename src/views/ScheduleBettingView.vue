@@ -139,7 +139,7 @@ const games = ref([
     teamB: "Boston Celtics",
     date: "2025-07-15",
     time: "8:00 AM",
-    odds: { teamA: "-140", teamB: "+90" }
+    odds: { teamA: "3.08", teamB: "1.39" }
   },
     {
     id: 'nba2',
@@ -147,7 +147,7 @@ const games = ref([
     teamB: "San Antonio Spurs",
     date: "2025-07-15",
     time: "8:30 AM",
-    odds: { teamA: "+110", teamB: "-120" }
+    odds: { teamA: "4.67", teamB: "1.45" }
   },
   {
     id: 'nba3',
@@ -155,7 +155,7 @@ const games = ref([
     teamB: "Sacramento Kings",
     date: "2025-07-15",
     time: "10:00 AM",
-    odds: { teamA: "-105", teamB: "+130" }
+    odds: { teamA: "1.79", teamB: "2.08" }
   },
   {
     id: 'nba4',
@@ -163,7 +163,7 @@ const games = ref([
     teamB: "Los Angeles Lakers",
     date: "2025-07-15",
     time: "10:30 AM",
-    odds: { teamA: "-115", teamB: "+135" }
+    odds: { teamA: "1.87", teamB: "2.13" }
   }
 ])
 
@@ -174,7 +174,7 @@ const pbaGames = ref([
     teamB: "TNT Tropang 5G",
     date: "2025-07-16",
     time: "7:30 PM",
-    odds: { teamA: "+100", teamB: "-110" }
+    odds: { teamA: "2.50", teamB: "1.47" }
   }
 ])
 
