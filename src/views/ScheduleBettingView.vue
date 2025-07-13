@@ -135,19 +135,35 @@ const totalBets = ref(0)
 const games = ref([
   {
     id: 'nba1',
-    teamA: "New Orleans Pelicans",
-    teamB: "Minnesota Timberwolves",
-    date: "2025-07-11",
-    time: "3:30 AM",
+    teamA: "Miami Heat",
+    teamB: "Boston Celtics",
+    date: "2025-07-15",
+    time: "8:00 AM",
+    odds: { teamA: "-140", teamB: "+90" }
+  },
+    {
+    id: 'nba2',
+    teamA: "Utah Jazz",
+    teamB: "San Antonio Spurs",
+    date: "2025-07-15",
+    time: "8:30 AM",
     odds: { teamA: "+110", teamB: "-120" }
   },
   {
-    id: 'nba2',
-    teamA: "Cleveland Cavaliers",
-    teamB: "Indiana Pacers",
-    date: "2025-07-11",
-    time: "5:00 AM",
+    id: 'nba3',
+    teamA: "Phoenix Suns",
+    teamB: "Sacramento Kings",
+    date: "2025-07-15",
+    time: "10:00 AM",
     odds: { teamA: "-105", teamB: "+130" }
+  },
+  {
+    id: 'nba4',
+    teamA: "Los Angeles Clippers",
+    teamB: "Los Angeles Lakers",
+    date: "2025-07-15",
+    time: "10:30 AM",
+    odds: { teamA: "-115", teamB: "+135" }
   }
 ])
 
@@ -156,7 +172,7 @@ const pbaGames = ref([
     id: 'pba1',
     teamA: "San Miguel Beermen",
     teamB: "TNT Tropang 5G",
-    date: "2025-07-13",
+    date: "2025-07-16",
     time: "7:30 PM",
     odds: { teamA: "+100", teamB: "-110" }
   }
