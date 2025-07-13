@@ -19,18 +19,25 @@
     <!-- Navigation Links -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item"><router-link class="nav-link" to="/">Home</router-link></li>
-        <li class="nav-item"><router-link class="nav-link" to="/schedule-betting">Schedule/Betting</router-link></li>
-        <li class="nav-item"><router-link class="nav-link" to="/trivia">Trivia</router-link></li>
-        <li class="nav-item"><router-link class="nav-link" to="/quiz">Quiz</router-link></li>
-        <li class="nav-item"><router-link class="nav-link" to="/about">About</router-link></li>
+        <li class="nav-item"><router-link @click="closeMobileMenu" class="nav-link" to="/">Home</router-link></li>
+        <li class="nav-item"><router-link @click="closeMobileMenu" class="nav-link" to="/schedule-betting">Schedule/Betting</router-link></li>
+        <li class="nav-item"><router-link @click="closeMobileMenu" class="nav-link" to="/trivia">Trivia</router-link></li>
+        <li class="nav-item"><router-link @click="closeMobileMenu" class="nav-link" to="/quiz">Quiz</router-link></li>
+        <li class="nav-item"><router-link @click="closeMobileMenu" class="nav-link" to="/about">About</router-link></li>
       </ul>
     </div>
   </div>
 </nav>
 </template>
 
-<script setup></script>
+<script setup>
+  function closeMobileMenu() {
+  const navCollapse = document.getElementById('navbarNav')
+  if (navCollapse && navCollapse.classList.contains('show')) {
+    navCollapse.classList.remove('show')
+  }
+}
+</script>
 
 <style scoped>
 /* Optional custom styles */
