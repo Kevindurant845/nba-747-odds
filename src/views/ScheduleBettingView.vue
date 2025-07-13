@@ -258,7 +258,7 @@ function timeUntilGame(date, time) {
 /* Custom Odds Style */
 .odds-item {
   font-weight: bold;
-  color: #f0ad4e; /* Bootstrap warning color */
+  color: #23f40a; /* Bootstrap warning color */
 }
 
 /* Optional: Customize more */
