@@ -121,6 +121,10 @@
       </div>
     </div>
 
+    <div v-else class="text-center my-5">
+      <p class="text-white-50">No matching PBA games found.</p>
+    </div>
+
     <!-- View Bet Slip Button -->
     <div class="text-center mt-5">
       <router-link to="/betslip" class="btn btn-lg btn-success">
