@@ -16,7 +16,7 @@
       <img src="../assets/Jp.jpg" alt="Profile Picture" class="img-fluid rounded-start" style="width: 100px; height: 100px; object-fit: cover;">
       <div class="card-body">
         <h5 class="card-title text-white">John Paul Balangue</h5>
-        <p class="card-text text-white">The mountain-man, allegedly into substances, but a Python certified prodigy.</p>
+        <p class="card-text text-white">The mountain-man, allegedly into substances, but loves his groupmates, and a Python certified prodigy.</p>
       </div>
     </div>
 
